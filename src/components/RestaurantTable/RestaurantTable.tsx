@@ -1,4 +1,5 @@
 import React from "react";
+import "./RestaurantTable.css";
 
 export interface RestaurantTableProps {
   restaurants: {
@@ -21,19 +22,30 @@ export interface RestaurantTableProps {
 
 const RestaurantTable: React.FC<RestaurantTableProps> = ({ restaurants }) => {
   return (
-    <table>
-      <tbody>
-        {restaurants.map((restaurant, i) => (
-          <tr key={i} data-testid={`restaurant`}>
-            <td>{restaurant.name}</td>
-            <td>{restaurant.city}</td>
-            <td>{restaurant.state}</td>
-            <td>{restaurant.telephone}</td>
-            <td>{restaurant.genre}</td>
+    <div id="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Telephone</th>
+            <th>Genre</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {restaurants.map((restaurant, i) => (
+            <tr key={i} data-testid={`restaurant`}>
+              <td>{restaurant.name}</td>
+              <td>{restaurant.city}</td>
+              <td>{restaurant.state}</td>
+              <td>{restaurant.telephone}</td>
+              <td>{restaurant.genre}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

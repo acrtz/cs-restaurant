@@ -1,0 +1,26 @@
+#table-wrapper {
+  overflow-x: scroll;
+}
+
+table {
+  background-color: #e8e8e8;
+  border-collapse: collapse;
+  cursor: pointer;
+  margin: 30px auto 15px auto;
+}
+
+th {
+  padding: 15px 10px;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #d1d1d1;
+}
