@@ -1,6 +1,6 @@
 import React from "react";
 
-interface RestaurantListProps {
+export interface RestaurantTableProps {
   restaurants: {
     id: string;
     name: string;
@@ -19,7 +19,7 @@ interface RestaurantListProps {
   }[];
 }
 
-const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
+const RestaurantTable: React.FC<RestaurantTableProps> = ({ restaurants }) => {
   return (
     <table>
       <tbody>
@@ -37,4 +37,4 @@ const RestaurantList: React.FC<RestaurantListProps> = ({ restaurants }) => {
   );
 };
 
-export default RestaurantList;
+export default RestaurantTable;
