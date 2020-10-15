@@ -7,7 +7,7 @@ export interface SelectProps {
   onChange: (event: ChangeEvent) => void;
   multiple?: boolean;
   label?: string;
-  clear?: () => void;
+  clear?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Select: React.FC<SelectProps> = (props) => {
@@ -21,12 +21,11 @@ const Select: React.FC<SelectProps> = (props) => {
       )}
       <div className="select-container">
         {props.options.map((option, i) => (
-          <label htmlFor={`option${i}`} key={i}>
+          <label key={i}>
             <input
+              value={option.id}
               data-testid={`checkbox-${option.id}`}
               type="checkbox"
-              id={`option${i}`}
-              name={`option${i}`}
               checked={
                 Array.isArray(props.selected)
                   ? props.selected.some((id) => id === option.id)
