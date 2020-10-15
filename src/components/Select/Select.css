@@ -14,6 +14,28 @@
   cursor: pointer;
 }
 
+.select-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+  margin-top: 25px;
+}
+
+.select-header button {
+  border: none;
+  background-color: transparent;
+  color: #3675ff;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.select-header button:hover {
+  border: none;
+  background-color: #d1d1d1;
+}
+
 .select-container label:hover {
   background-color: #d1d1d1;
 }

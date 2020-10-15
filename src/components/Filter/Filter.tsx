@@ -17,6 +17,8 @@ const Filter: React.FC<FilterProps> = ({ filter }) => {
       <Select
         options={states}
         selected={filter.state}
+        label="By state"
+        clear={() => {}}
         onChange={(e) => {
           console.log({ e });
         }}

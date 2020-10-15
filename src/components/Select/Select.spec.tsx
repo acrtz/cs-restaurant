@@ -19,6 +19,8 @@ describe("shows and enables user to select all options ", () => {
         multiple={props.multiple}
         options={props.options}
         onChange={props.onChange}
+        label={props.label}
+        clear={props.clear}
       />
     );
   };
@@ -36,6 +38,18 @@ describe("shows and enables user to select all options ", () => {
 
     fireEvent.click(getByTestId("checkbox-AL"));
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it("fires clear function when a clear button is clicked", () => {
+    const clear = jest.fn().mockName("clear");
+    const { getByRole } = renderSelect({ ...defaultProps, clear });
+    fireEvent.click(getByRole("button"));
+    expect(clear).toHaveBeenCalled();
+  });
+
+  it("doesn't show select header if lable and clear() aren't passed as arguments", () => {
+    const { queryByTestId } = renderSelect({ ...defaultProps });
+    expect(queryByTestId("select-header")).toBeNull();
   });
 
   it("shows selected values as checked, and unselected values as unchecked", () => {
