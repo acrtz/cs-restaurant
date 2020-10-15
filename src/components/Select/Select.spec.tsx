@@ -9,7 +9,6 @@ describe("shows and enables user to select all options ", () => {
     selected: [],
     multiple: true,
     options: states,
-    label: "Filter by states",
     onChange: () => {},
   };
 
@@ -19,7 +18,6 @@ describe("shows and enables user to select all options ", () => {
         selected={props.selected}
         multiple={props.multiple}
         options={props.options}
-        label={props.label}
         onChange={props.onChange}
       />
     );

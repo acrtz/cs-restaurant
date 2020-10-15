@@ -1,16 +1,16 @@
 import React, { ChangeEvent } from "react";
+import "./Select.css";
 
 export interface SelectProps {
   selected: string | string[];
   options: { id: string; name: string }[];
-  label?: string;
   onChange: (event: ChangeEvent) => void;
   multiple?: boolean;
 }
 
 const Select: React.FC<SelectProps> = (props) => {
   return (
-    <div>
+    <div className="select-container">
       {props.options.map((option, i) => (
         <label htmlFor={`option${i}`} key={i}>
           <input

@@ -1,0 +1,23 @@
+.select-container {
+  border: 2px solid #ddd;
+  padding: 5px;
+  margin: 10px auto;
+  height: 200px;
+  overflow-y: scroll;
+  border-radius: 3px;
+}
+
+.select-container label {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.select-container label:hover {
+  background-color: #d1d1d1;
+}
+
+.select-container input {
+  margin-right: 5px;
+}
