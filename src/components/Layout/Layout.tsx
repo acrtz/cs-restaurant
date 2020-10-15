@@ -1,16 +1,19 @@
 import React from "react";
-import RestaurantTable, {
-  RestaurantTableProps,
-} from "../RestaurantTable/RestaurantTable";
+import RestaurantTable from "../RestaurantTable/RestaurantTable";
 import Filter from "../Filter/Filter";
 import mockRestaurantList from "../../util/mockRestaurantList";
+import { LayoutProps } from "../../types";
 import "./Layout.css";
 
-const Layout: React.FC<RestaurantTableProps> = () => {
+const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <div id="layout">
       <div id="left-panel">
-        <Filter filter={{ state: ["OR", "WA"], genre: [], attire: [] }} />
+        <Filter
+          filter={props.filter}
+          updateFilter={props.updateFilter}
+          clearFilter={props.clearFilter}
+        />
       </div>
       <div id="main-screen">
         <div>search</div>

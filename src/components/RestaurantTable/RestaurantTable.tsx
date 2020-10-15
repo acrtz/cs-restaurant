@@ -1,24 +1,6 @@
 import React from "react";
 import "./RestaurantTable.css";
-
-export interface RestaurantTableProps {
-  restaurants: {
-    id: string;
-    name: string;
-    address1: string;
-    city: string;
-    state: string;
-    zip: string;
-    lat: string;
-    long: string;
-    telephone: string;
-    tags: string;
-    website: string;
-    genre: string;
-    hours: string;
-    attire: string;
-  }[];
-}
+import { RestaurantTableProps } from "../../types";
 
 const RestaurantTable: React.FC<RestaurantTableProps> = ({ restaurants }) => {
   return (

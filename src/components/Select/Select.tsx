@@ -1,14 +1,6 @@
-import React, { ChangeEvent } from "react";
+import React from "react";
 import "./Select.css";
-
-export interface SelectProps {
-  selected: string | string[];
-  options: { id: string; name: string }[];
-  onChange: (event: ChangeEvent) => void;
-  multiple?: boolean;
-  label?: string;
-  clear?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-}
+import { SelectProps } from "../../types";
 
 const Select: React.FC<SelectProps> = (props) => {
   return (
