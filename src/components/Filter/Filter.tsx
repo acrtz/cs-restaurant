@@ -1,6 +1,5 @@
 import React from "react";
 import Select from "../Select/Select";
-import states from "../../util/states";
 import { FilterProps, FilterKey, FilterState } from "../../types";
 
 const Filter: React.FC<FilterProps> = (props) => {

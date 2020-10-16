@@ -2,13 +2,26 @@ import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import Select from "./Select";
 import states from "../../util/states";
-import { SelectProps } from "./Select";
+import { SelectProps } from "../../types";
 
 describe("shows and enables user to select all options ", () => {
-  const defaultProps = {
+  const defaultProps: SelectProps = {
     selected: [],
     multiple: true,
-    options: states,
+    options: [
+      { id: "AL", name: "Alabama" },
+      { id: "AK", name: "Alaska" },
+      { id: "AZ", name: "Arizona" },
+      { id: "AR", name: "Arkansas" },
+      { id: "CA", name: "California" },
+      { id: "CO", name: "Colorado" },
+      { id: "CT", name: "Connecticut" },
+      { id: "DE", name: "Delaware" },
+      { id: "FL", name: "Florida" },
+      { id: "GA", name: "Georgia" },
+      { id: "HI", name: "Hawaii" },
+      { id: "WY", name: "Wyoming" },
+    ],
     onChange: () => {},
   };
 
