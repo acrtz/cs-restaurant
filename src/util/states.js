@@ -1,6 +1,5 @@
 // list
 // entry count: 38
-
 module.exports = {
   AL: "Alabama",
   AK: "Alaska",

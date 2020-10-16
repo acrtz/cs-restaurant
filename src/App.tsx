@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import Layout from "./components/Layout/Layout";
 import api from "./api/api";
-import { defaultFilter } from "./util/defaultFilter";
 import { filterRestaurants, prepareFilterGroups } from "./util/filterUtilities";
 import {
   FilterState,
@@ -11,13 +9,19 @@ import {
   FilterGroupStructure,
 } from "./types";
 
+const DEFAULT_FILTER = {
+  state: [],
+  genre: [],
+  attire: [],
+};
+
 const DEFAULT_PAGINATION = {
   offset: 0,
   limit: 10,
 };
 
 const App: React.FC = () => {
-  const [filter, setFilter] = useState<FilterState>(defaultFilter);
+  const [filter, setFilter] = useState<FilterState>(DEFAULT_FILTER);
   const [pagination, setPagination] = useState<PaginationState>(
     DEFAULT_PAGINATION
   );

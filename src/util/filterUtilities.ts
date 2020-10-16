@@ -63,7 +63,6 @@ const filterByTextSearch = (textSearch: string, restaurants: Restaurant[]) => {
   });
 };
 
-
 export const prepareFilterGroups = (restaurants: Restaurant[]) => ({
   genre: getGenreFromResaurants(restaurants),
   attire: getAttireFromResaurants(restaurants),

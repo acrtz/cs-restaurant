@@ -1,7 +1,6 @@
 // mock list of restaurants that can be used for testing
 // or building out the frontend before connecting to api
 // entry count: 38
-
 module.exports = [
   {
     id: "f223fdd0-4adc-423e-9747-980a66c256ca",
