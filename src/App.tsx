@@ -11,12 +11,16 @@ import {
   FilterGroupStructure,
 } from "./types";
 
+const DEFAULT_PAGINATION = {
+  offset: 0,
+  limit: 10,
+};
+
 const App: React.FC = () => {
   const [filter, setFilter] = useState<FilterState>(defaultFilter);
-  const [pagination, setPagination] = useState<PaginationState>({
-    offset: 0,
-    limit: 10,
-  });
+  const [pagination, setPagination] = useState<PaginationState>(
+    DEFAULT_PAGINATION
+  );
   const [filterGroups, setFilterGroups] = useState<FilterGroupStructure>({
     state: [],
     genre: [],
@@ -39,6 +43,7 @@ const App: React.FC = () => {
         restaurants
       );
       setFilteredRestaurants(filteredRestaurants);
+      setPagination(DEFAULT_PAGINATION);
     }
   }, [filter, restaurants, textSearch]);
 
