@@ -2,7 +2,7 @@
   border: 2px solid #ddd;
   padding: 5px;
   margin: 10px auto;
-  height: 200px;
+  max-height: 200px;
   overflow-y: scroll;
   border-radius: 3px;
 }
