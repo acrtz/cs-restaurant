@@ -44,19 +44,31 @@ const App: React.FC = () => {
     });
   };
 
+  const capitalize = (str: string) =>
+    `${str.slice(0, 1).toUpperCase()}${str.slice(1).toLowerCase()}`;
+
   const getGenreFromResaurants = (restaurants: Restaurant[]) => {
     const genreObj = restaurants
       .reduce((acc, { genre }) => {
         return `${acc},${genre.toLowerCase()}`;
       }, "")
       .split(",")
-      .reduce((acc, genre) => ({ ...acc, [genre]: genre }), {});
+      .filter((x) => x) // remove emptry string
+      .reduce((acc, genre) => {
+        return {
+          ...acc,
+          [genre]: capitalize(genre),
+        };
+      }, {});
     return convertObjectToArray(genreObj);
   };
 
   const getAttireFromResaurants = (restaurants: Restaurant[]) => {
     const attireObj = restaurants.reduce((acc, restaurant) => {
-      return { ...acc, [restaurant.attire]: restaurant.attire.toLowerCase() };
+      return {
+        ...acc,
+        [restaurant.attire.toLowerCase()]: capitalize(restaurant.attire),
+      };
     }, {});
     return convertObjectToArray(attireObj);
   };

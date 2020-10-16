@@ -36,7 +36,6 @@ const Filter: React.FC<FilterProps> = (props) => {
   };
 
   const { state, attire, genre } = props.filterGroups;
-  console.log({ state });
   return (
     <div>
       Filter:
@@ -46,6 +45,20 @@ const Filter: React.FC<FilterProps> = (props) => {
         label="By state"
         clear={clearFilter.bind(null, "state")}
         onChange={updateFilter.bind(null, "state", true)}
+      />
+      <Select
+        options={genre}
+        selected={props.filter.genre}
+        label="By genre"
+        clear={clearFilter.bind(null, "genre")}
+        onChange={updateFilter.bind(null, "genre", true)}
+      />
+      <Select
+        options={attire}
+        selected={props.filter.attire}
+        label="By attire"
+        clear={clearFilter.bind(null, "attire")}
+        onChange={updateFilter.bind(null, "attire", true)}
       />
     </div>
   );
