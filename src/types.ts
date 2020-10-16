@@ -20,6 +20,13 @@ export interface SelectProps {
 export interface FilterProps {
   filter: FilterState;
   setFilter: Function;
+  filterGroups: FilterGroupStructure
+}
+
+export interface FilterGroupStructure {
+  state: { id: string, name: string }[],
+  genre: { id: string, name: string }[],
+  attire: { id: string, name: string }[]
 }
 
 export interface TextSearchProps {

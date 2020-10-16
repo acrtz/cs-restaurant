@@ -35,11 +35,13 @@ const Filter: React.FC<FilterProps> = (props) => {
     });
   };
 
+  const { state, attire, genre } = props.filterGroups;
+  console.log({ state });
   return (
     <div>
       Filter:
       <Select
-        options={states}
+        options={state}
         selected={props.filter.state}
         label="By state"
         clear={clearFilter.bind(null, "state")}

@@ -10,7 +10,11 @@ const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <div id="layout">
       <div id="left-panel">
-        <Filter filter={props.filter} setFilter={props.setFilter} />
+        <Filter
+          filterGroups={props.filterGroups}
+          filter={props.filter}
+          setFilter={props.setFilter}
+        />
       </div>
       <div id="main-screen">
         <TextSearch
