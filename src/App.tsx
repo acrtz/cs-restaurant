@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+
 import Layout from "./components/Layout/Layout";
 import api from "./api/api";
-import STATES from "./util/states";
 import { defaultFilter } from "./util/defaultFilter";
-import convertObjectToArray from "./util/convertObjectToArray";
+import { filterRestaurants, prepareFilterGroups } from "./util/filterUtilities";
 import {
   FilterState,
-  FilterKey,
   Restaurant,
   PaginationState,
   FilterGroupStructure,
@@ -30,95 +29,24 @@ const App: React.FC = () => {
     []
   );
 
-  const onGetRestaurantSuccess = (restaurants: Restaurant[]) => {
-    const genre = getGenreFromResaurants(restaurants);
-    const attire = getAttireFromResaurants(restaurants);
-    const state = getStateFromResaurants(restaurants);
-
-    setRestaurants(restaurants);
-
-    setFilterGroups({
-      genre,
-      attire,
-      state,
-    });
-  };
-
-  const capitalize = (str: string) =>
-    `${str.slice(0, 1).toUpperCase()}${str.slice(1).toLowerCase()}`;
-
-  const getGenreFromResaurants = (restaurants: Restaurant[]) => {
-    const genreObj = restaurants
-      .reduce((acc, { genre }) => {
-        return `${acc},${genre.toLowerCase()}`;
-      }, "")
-      .split(",")
-      .filter((x) => x) // remove emptry string
-      .reduce((acc, genre) => {
-        return {
-          ...acc,
-          [genre]: capitalize(genre),
-        };
-      }, {});
-    return convertObjectToArray(genreObj);
-  };
-
-  const getAttireFromResaurants = (restaurants: Restaurant[]) => {
-    const attireObj = restaurants.reduce((acc, restaurant) => {
-      return {
-        ...acc,
-        [restaurant.attire.toLowerCase()]: capitalize(restaurant.attire),
-      };
-    }, {});
-    return convertObjectToArray(attireObj);
-  };
-
-  const getStateFromResaurants = (restaurants: Restaurant[]) => {
-    const stateObj = restaurants.reduce((acc, restaurant) => {
-      const stateCode = restaurant.state.toUpperCase();
-      const stateName = (STATES as {
-        [key: string]: string;
-      })[stateCode];
-      return { ...acc, [stateCode]: stateName || stateCode };
-    }, {});
-    return convertObjectToArray(stateObj);
-  };
-
   useEffect(() => {
     if (restaurants === null) {
       api.getRestaurants(onGetRestaurantSuccess, setError);
     } else {
-      let filteredRestaurants = restaurants || [];
-      const keys = Object.keys(filter) as FilterKey[];
-
-      for (const key of keys) {
-        const value = filter[key as FilterKey];
-        if (Array.isArray(value)) {
-          const regexArray = value.map((v) => new RegExp(v, "i"));
-          if (value.length)
-            filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-              return regexArray.some((regex) => regex.test(restaurant[key]));
-            });
-        } else
-          filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-            return RegExp(value, "i").test(restaurant[key]);
-          });
-      }
-
-      if (textSearch)
-        filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-          //create a case insensitive regex to seach the text
-          const regex = new RegExp(textSearch, "i");
-          return (
-            regex.test(restaurant.name) ||
-            regex.test(restaurant.city) ||
-            regex.test(restaurant.genre)
-          );
-        });
-
+      const filteredRestaurants = filterRestaurants(
+        filter,
+        textSearch,
+        restaurants
+      );
       setFilteredRestaurants(filteredRestaurants);
     }
   }, [filter, restaurants, textSearch]);
+
+  const onGetRestaurantSuccess = (restaurants: Restaurant[]) => {
+    const filterGroups = prepareFilterGroups(restaurants);
+    setFilterGroups(filterGroups);
+    setRestaurants(restaurants);
+  };
 
   return (
     <Layout
