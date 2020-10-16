@@ -6,6 +6,7 @@ import { FilterState, FilterKey, Restaurant } from "./types";
 
 const App: React.FC = () => {
   const [filter, setFilter] = useState<FilterState>(defaultFilter);
+  const [textSearch, setTextSearch] = useState<string>("");
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(
     mockRestaurantList
   );
@@ -29,14 +30,28 @@ const App: React.FC = () => {
           return value === restaurant[key];
         });
     }
+
+    if (textSearch)
+      filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+        //create a case insensitive regex to seach the text
+        const regex = new RegExp(textSearch, "i");
+        return (
+          regex.test(restaurant.name) ||
+          regex.test(restaurant.city) ||
+          regex.test(restaurant.genre)
+        );
+      });
+
     setFilteredRestaurants(filteredRestaurants);
-  }, [filter, restaurants]);
+  }, [filter, restaurants, textSearch]);
 
   return (
     <Layout
       restaurants={filteredRestaurants}
       filter={filter}
       setFilter={setFilter}
+      textSearch={textSearch}
+      setTextSearch={setTextSearch}
     />
   );
 };

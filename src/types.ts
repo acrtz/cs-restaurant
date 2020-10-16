@@ -15,11 +15,16 @@ export interface SelectProps {
   clear?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-// TODO: look into type for setFilter function.
+// TODO: look into type for setter funcitons (setFilter, setTextSearch etc.).
 // Is there a better option than 'Function'
 export interface FilterProps {
   filter: FilterState;
   setFilter: Function;
+}
+
+export interface TextSearchProps {
+  textSearch: string;
+  setTextSearch: Function;
 }
 
 export interface Restaurant {
@@ -43,4 +48,7 @@ export interface RestaurantTableProps {
   restaurants: Restaurant[] | null;
 }
 
-export interface LayoutProps extends FilterProps, RestaurantTableProps {}
+export interface LayoutProps
+  extends FilterProps,
+    RestaurantTableProps,
+    TextSearchProps {}
