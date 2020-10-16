@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react";
 import Layout from "./components/Layout/Layout";
 import mockRestaurantList from "./util/mockRestaurantList";
 import { defaultFilter } from "./util/defaultFilter";
-import { FilterState, FilterKey, Restaurant } from "./types";
+import { FilterState, FilterKey, Restaurant, PaginationState } from "./types";
 
 const App: React.FC = () => {
   const [filter, setFilter] = useState<FilterState>(defaultFilter);
+  const [pagination, setPagination] = useState<PaginationState>({
+    offset: 0,
+    limit: 10,
+  });
   const [textSearch, setTextSearch] = useState<string>("");
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(
     mockRestaurantList
   );
-  const [filteredRestaurants, setFilteredRestaurants] = useState<
-    Restaurant[] | null
-  >(mockRestaurantList);
+  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(
+    mockRestaurantList
+  );
 
   useEffect(() => {
     let filteredRestaurants = restaurants || [];
@@ -47,11 +51,17 @@ const App: React.FC = () => {
 
   return (
     <Layout
-      restaurants={filteredRestaurants}
+      restaurants={filteredRestaurants.slice(
+        pagination.offset,
+        pagination.offset + pagination.limit
+      )}
       filter={filter}
       setFilter={setFilter}
       textSearch={textSearch}
       setTextSearch={setTextSearch}
+      pagination={pagination}
+      setPagination={setPagination}
+      restaurantCount={filteredRestaurants?.length}
     />
   );
 };

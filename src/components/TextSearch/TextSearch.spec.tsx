@@ -1,4 +1,4 @@
-import { render, fireEvent, getByRole } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import TextSearch from "./TextSearch";
 import { TextSearchProps } from "../../types";

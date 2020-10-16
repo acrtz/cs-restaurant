@@ -27,6 +27,17 @@ export interface TextSearchProps {
   setTextSearch: Function;
 }
 
+export interface PaginationProps {
+  pagination: { offset: number, limit: number }
+  setPagination: Function;
+  restaurantCount: number | undefined;
+}
+
+export interface PaginationState {
+  offset: number;
+  limit: number;
+}
+
 export interface Restaurant {
   id: string;
   name: string;
@@ -45,10 +56,11 @@ export interface Restaurant {
 }
 
 export interface RestaurantTableProps {
-  restaurants: Restaurant[] | null;
+  restaurants: Restaurant[];
 }
 
 export interface LayoutProps
   extends FilterProps,
     RestaurantTableProps,
-    TextSearchProps {}
+    TextSearchProps,
+    PaginationProps {}

@@ -2,6 +2,7 @@ import React from "react";
 import RestaurantTable from "../RestaurantTable/RestaurantTable";
 import Filter from "../Filter/Filter";
 import TextSearch from "../TextSearch/TextSearch";
+import Pagination from "../Pagination/Pagination";
 import { LayoutProps } from "../../types";
 import "./Layout.css";
 
@@ -17,6 +18,11 @@ const Layout: React.FC<LayoutProps> = (props) => {
           setTextSearch={props.setTextSearch}
         />
         <RestaurantTable restaurants={props.restaurants} />
+        <Pagination
+          pagination={props.pagination}
+          setPagination={props.setPagination}
+          restaurantCount={props.restaurantCount}
+        />
       </div>
     </div>
   );
