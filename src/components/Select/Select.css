@@ -23,6 +23,7 @@
 
 .select-header button {
   border: none;
+  outline: none;
   background-color: transparent;
   color: #3675ff;
   border-radius: 3px;
