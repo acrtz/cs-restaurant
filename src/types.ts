@@ -15,17 +15,11 @@ export interface SelectProps {
   clear?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+// TODO: look into type for setFilter function.
+// Is there a better option than 'Function'
 export interface FilterProps {
   filter: FilterState;
-  clearFilter: (
-    key: FilterKey,
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => void;
-  updateFilter: (
-    key: FilterKey,
-    multiple: boolean,
-    event: React.ChangeEvent
-  ) => void;
+  setFilter: Function;
 }
 
 export interface Restaurant {
