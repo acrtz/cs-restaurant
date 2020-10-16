@@ -94,13 +94,14 @@ const App: React.FC = () => {
       for (const key of keys) {
         const value = filter[key as FilterKey];
         if (Array.isArray(value)) {
+          const regexArray = value.map((v) => new RegExp(v, "i"));
           if (value.length)
             filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-              return value.includes(restaurant[key]);
+              return regexArray.some((regex) => regex.test(restaurant[key]));
             });
         } else
           filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-            return value === restaurant[key];
+            return RegExp(value, "i").test(restaurant[key]);
           });
       }
 
