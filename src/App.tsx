@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./components/Layout/Layout";
 import mockRestaurantList from "./util/mockRestaurantList";
-import { FilterState, filterKeys } from "./types";
+import { FilterState, FilterKey, Restaurant } from "./types";
 
 const defaultFilter = {
   state: [],
@@ -10,10 +10,35 @@ const defaultFilter = {
 };
 
 const App: React.FC = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[] | null>(
+    mockRestaurantList
+  );
+  const [filteredRestaurants, setFilteredRestaurants] = useState<
+    Restaurant[] | null
+  >(mockRestaurantList);
   const [filter, setFilter] = useState<FilterState>(defaultFilter);
 
+  useEffect(() => {
+    let filteredRestaurants = restaurants || [];
+    const keys = Object.keys(filter) as FilterKey[];
+
+    for (const key of keys) {
+      const value = filter[key as FilterKey];
+      if (Array.isArray(value)) {
+        if (value.length)
+          filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+            return value.includes(restaurant[key]);
+          });
+      } else
+        filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+          return value === restaurant[key];
+        });
+    }
+    setFilteredRestaurants(filteredRestaurants);
+  }, [filter, restaurants]);
+
   const updateFilter = (
-    key: filterKeys,
+    key: FilterKey,
     multiple: boolean,
     event: React.ChangeEvent
   ) => {
@@ -39,7 +64,7 @@ const App: React.FC = () => {
 
   // clears single filter if key is provided or all filters
   // when not key is provided
-  const clearFilter = (key: filterKeys) => {
+  const clearFilter = (key: FilterKey) => {
     setFilter((current) => {
       return { ...current, [key]: Array.isArray(current[key]) ? [] : null };
     });
@@ -47,7 +72,7 @@ const App: React.FC = () => {
 
   return (
     <Layout
-      restaurants={mockRestaurantList}
+      restaurants={filteredRestaurants}
       filter={filter}
       updateFilter={updateFilter}
       clearFilter={clearFilter}

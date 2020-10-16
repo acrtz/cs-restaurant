@@ -16,7 +16,7 @@ const RestaurantTable: React.FC<RestaurantTableProps> = ({ restaurants }) => {
           </tr>
         </thead>
         <tbody>
-          {restaurants.map((restaurant, i) => (
+          {restaurants?.map((restaurant, i) => (
             <tr key={i} data-testid={`restaurant`}>
               <td>{restaurant.name}</td>
               <td>{restaurant.city}</td>
