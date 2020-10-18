@@ -19,14 +19,15 @@
 
 #open-close-filter {
   outline: none;
+  padding: none;
   position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   left: 180px;
   border: 2px solid #d1d1d1;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background-color: white;
   transition: left 0.5s;
   border-radius: 3px;
@@ -38,7 +39,7 @@
   background-color: #d1d1d1;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   #left-panel {
     position: fixed;
     z-index: 1;
@@ -57,7 +58,9 @@
   #left-panel.open-filter {
     position: fixed;
     left: 0px;
-    box-shadow: 0px 0px 0px 100vw #81818155;
+    box-shadow: 50vh 0px 0px 50vw #81818155;
+    -webkit-box-shadow: 50vh 0px 0px 50vw #81818155;
+    -moz-box-shadow: 50vh 0px 0px 50vw #81818155;
   }
 }
 
