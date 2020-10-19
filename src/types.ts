@@ -15,8 +15,6 @@ export interface SelectProps {
   clear?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-// TODO: look into type for setter funcitons (setFilter, setTextSearch etc.).
-// Is there a better option than 'Function'
 export interface FilterProps {
   filter: FilterState;
   setFilter: Function;
@@ -39,11 +37,6 @@ export interface PaginationProps {
   setPagination: Function;
   restaurantCount: number | undefined;
 }
-
-// export interface PaginationState {
-//   offset: number;
-//   limit: number;
-// }
 
 export interface Restaurant {
   id: string;
