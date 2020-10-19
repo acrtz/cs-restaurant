@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./components/Layout/Layout";
 import api from "./api/api";
-import { filterRestaurants, prepareFilterGroups } from "./util/filterUtilities";
+import {
+  filterAndSortRestaurants,
+  prepareFilterGroups,
+} from "./util/filterUtilities";
 import { Restaurant, FilterGroupStructure } from "./types";
 
 const DEFAULT_FILTER = {
@@ -35,12 +38,12 @@ const App: React.FC = () => {
     if (restaurants === null) {
       api.getRestaurants(onGetRestaurantSuccess, setError);
     } else {
-      const filteredRestaurants = filterRestaurants(
+      const filteredSortedRestaurants = filterAndSortRestaurants(
         filter,
         textSearch,
         restaurants
       );
-      setFilteredRestaurants(filteredRestaurants);
+      setFilteredRestaurants(filteredSortedRestaurants);
       setPagination(DEFAULT_PAGINATION);
     }
   }, [filter, restaurants, textSearch]);

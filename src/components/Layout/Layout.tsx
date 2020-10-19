@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import RestaurantTable from "../RestaurantTable/RestaurantTable";
 import Filter from "../Filter/Filter";
 import TextSearch from "../TextSearch/TextSearch";

@@ -1,7 +1,7 @@
 import { Restaurant, FilterKey, FilterState } from '../types';
 import STATES from "./states";
 
-export const filterRestaurants = (filter: FilterState, textSearch: string, restaurants: Restaurant[]) => {
+export const filterAndSortRestaurants = (filter: FilterState, textSearch: string, restaurants: Restaurant[]) => {
   let filteredRestaurants = restaurants || [];
   const keys = Object.keys(filter) as FilterKey[];
 
@@ -24,7 +24,8 @@ export const filterRestaurants = (filter: FilterState, textSearch: string, resta
   if (textSearch)
     filteredRestaurants = filterByTextSearch(textSearch, filteredRestaurants);
 
-  return filteredRestaurants;
+  const filteredSortedRestaurants = filteredRestaurants.sort((a,b)=> a.name<b.name ? -1 : 0)
+  return filteredSortedRestaurants;
 };
 
 const filterWithSingleValue = (

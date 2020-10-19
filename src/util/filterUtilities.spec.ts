@@ -1,9 +1,9 @@
 import mockRestaurantList from "./mockRestaurantList";
-import { filterRestaurants, prepareFilterGroups } from './filterUtilities';
+import { filterAndSortRestaurants, prepareFilterGroups } from './filterUtilities';
 
-describe("filterRestaurants Fxn",()=> {
+describe("filterAndSortRestaurants Fxn",()=> {
   it('correctly filters based on state, genre, attire, and textSearch', () =>{
-    const filteredRestaurants = filterRestaurants(
+    const filteredRestaurants = filterAndSortRestaurants(
       {
         state: ['FL', 'AZ'],
         genre: ['american'],
