@@ -11,6 +11,7 @@ import "./Layout.css";
 const Layout: React.FC<LayoutProps> = (props) => {
   const [open, setOpen] = useState<boolean>(false);
   const noMatchesFound = !props.loading && !props.restaurants.length;
+  if (props.loading) return <div id="loader" />;
   return (
     <div
       id="layout"

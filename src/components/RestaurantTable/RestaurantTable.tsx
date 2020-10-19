@@ -2,11 +2,7 @@ import React from "react";
 import "./RestaurantTable.css";
 import { RestaurantTableProps } from "../../types";
 
-const RestaurantTable: React.FC<RestaurantTableProps> = ({
-  restaurants,
-  loading,
-}) => {
-  if (loading) return <div id="loader" />;
+const RestaurantTable: React.FC<RestaurantTableProps> = ({ restaurants }) => {
   return (
     <div id="table-wrapper">
       <table>
