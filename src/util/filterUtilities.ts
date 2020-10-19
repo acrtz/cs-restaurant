@@ -106,6 +106,50 @@ const getStateFromResaurants = (restaurants: Restaurant[]) => {
   return convertFilterObjectToArray(stateObj);
 };
 
+export const clearFilter = (
+  filter: FilterState,
+  setFilter: Function,
+  key: FilterKey
+) => {
+  const updatedFilter = {
+    ...filter,
+    [key]: Array.isArray(filter[key]) ? [] : null,
+  };
+  setFilter(updatedFilter);
+};
+
+export const updateFilter = (
+  event: React.ChangeEvent,
+  filter: FilterState,
+  setFilter: Function,
+  key: FilterKey,
+  multiple: boolean
+) => {
+  const clickedValue = (event.target as HTMLInputElement).value;
+
+  let currentValue = filter[key];
+  let newValue;
+
+  // multiple indicated filter group can select mulitle options (value and new value are arrays)
+  if (multiple) {
+    // if clicked value is already select then filter it out of
+    if (currentValue.includes(clickedValue)) {
+      newValue = currentValue.filter((value) => value !== clickedValue);
+    } else {
+      newValue = [...currentValue, clickedValue];
+    }
+  }
+  // The following code enables filtering for filter groups where only
+  // one value can be selected at a time. Since no such group is used
+  // currently typechecks prevent its usage.
+  // else {
+  //   if (value === clickedValue) newValue = "";
+  //   else newValue = clickedValue;
+  // }
+
+  setFilter({ ...filter, [key]: newValue });
+};
+
 const capitalize = (str: string) =>
 `${str.slice(0, 1).toUpperCase()}${str.slice(1).toLowerCase()}`;
 

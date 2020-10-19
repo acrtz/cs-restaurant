@@ -1,64 +1,31 @@
 import React from "react";
 import Select from "../Select/Select";
-import { FilterProps, FilterKey, FilterState } from "../../types";
+import { FilterProps, FilterKey } from "../../types";
+import { clearFilter, updateFilter } from "../../util/filterUtilities";
 
 const Filter: React.FC<FilterProps> = (props) => {
-  const updateFilter = (
-    key: FilterKey,
-    multiple: boolean,
-    event: React.ChangeEvent
-  ) => {
-    const clickedValue = (event.target as HTMLInputElement).value;
-
-    props.setFilter((current: FilterState) => {
-      let value = current[key];
-      let newValue;
-
-      if (!multiple) {
-        newValue = clickedValue;
-      } else {
-        if (value.includes(clickedValue)) {
-          newValue = value.filter((value) => value !== clickedValue);
-        } else {
-          newValue = [...value, clickedValue];
-        }
-      }
-
-      return { ...current, [key]: newValue };
-    });
-  };
-
-  const clearFilter = (key: FilterKey) => {
-    props.setFilter((current: FilterState) => {
-      return { ...current, [key]: Array.isArray(current[key]) ? [] : null };
-    });
-  };
-
-  const { state, attire, genre } = props.filterGroups;
   return (
     <div>
       Filter:
-      <Select
-        options={state}
-        selected={props.filter.state}
-        label="By state"
-        clear={clearFilter.bind(null, "state")}
-        onChange={updateFilter.bind(null, "state", true)}
-      />
-      <Select
-        options={genre}
-        selected={props.filter.genre}
-        label="By genre"
-        clear={clearFilter.bind(null, "genre")}
-        onChange={updateFilter.bind(null, "genre", true)}
-      />
-      <Select
-        options={attire}
-        selected={props.filter.attire}
-        label="By attire"
-        clear={clearFilter.bind(null, "attire")}
-        onChange={updateFilter.bind(null, "attire", true)}
-      />
+      {(["state", "genre", "attire"] as FilterKey[]).map(
+        (filterKey: FilterKey, i) => {
+          const options = props.filterGroups[filterKey];
+          const { filter, setFilter } = props;
+          // check to make sure Select options array isnt empty
+          return options.length ? (
+            <Select
+              key={i}
+              options={options}
+              selected={filter[filterKey]}
+              label={`By ${filterKey}`}
+              clear={() => clearFilter(filter, setFilter, filterKey)}
+              onChange={(e) =>
+                updateFilter(e, filter, setFilter, filterKey, true)
+              }
+            />
+          ) : null;
+        }
+      )}
     </div>
   );
 };
