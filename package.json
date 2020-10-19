@@ -2,7 +2,7 @@
   "name": "cs-restaurants",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://acrtz.github.io/cs-restaurants",
+  "homepage": "http://acrtz.github.io/cs-restaurant",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
