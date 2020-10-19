@@ -41,7 +41,10 @@ const Layout: React.FC<LayoutProps> = (props) => {
           textSearch={props.textSearch}
           setTextSearch={props.setTextSearch}
         />
-        <RestaurantTable restaurants={props.restaurants} />
+        <RestaurantTable
+          loading={props.loading}
+          restaurants={props.restaurants}
+        />
         <Pagination
           pagination={props.pagination}
           setPagination={props.setPagination}

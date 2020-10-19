@@ -26,13 +26,17 @@ const App: React.FC = () => {
     genre: [],
     attire: [],
   });
+  const [loading, setLoading] = useState(true);
   const [textSearch, setTextSearch] = useState("");
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(
     []
   );
 
-  const setError = (errorMessage: string) => alert(errorMessage);
+  const setError = (errorMessage: string) => {
+    alert(errorMessage);
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (restaurants === null) {
@@ -52,6 +56,7 @@ const App: React.FC = () => {
     const filterGroups = prepareFilterGroups(restaurants);
     setFilterGroups(filterGroups);
     setRestaurants(restaurants);
+    setLoading(false);
   };
 
   return (
@@ -68,6 +73,7 @@ const App: React.FC = () => {
       pagination={pagination}
       setPagination={setPagination}
       restaurantCount={filteredRestaurants?.length}
+      loading={loading}
     />
   );
 };

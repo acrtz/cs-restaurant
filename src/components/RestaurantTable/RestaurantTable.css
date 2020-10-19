@@ -22,3 +22,63 @@ td {
   border-top: 1px solid #ddd;
   text-align: center;
 }
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: inline-block;
+  background-color: #ffffffbb;
+  display: flex;
+  justify-content: center;
+  padding-top: 30vh;
+}
+
+#loader:after {
+  content: " ";
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 15px solid #fff;
+  border-color: #3675ff transparent #3675ff transparent;
+  -webkit-animation: spin 1.5s linear infinite;
+  -moz-animation: spin 1.5s linear infinite;
+  -o-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}

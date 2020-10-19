@@ -57,6 +57,7 @@ export interface Restaurant {
 
 export interface RestaurantTableProps {
   restaurants: Restaurant[];
+  loading: boolean;
 }
 
 export interface LayoutProps
