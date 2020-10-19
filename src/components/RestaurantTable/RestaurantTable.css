@@ -5,7 +5,6 @@
 table {
   background-color: #e8e8e8;
   border-collapse: collapse;
-  cursor: pointer;
   margin: 30px auto 15px auto;
   width: 100%;
   transition: all 0.3s;
@@ -22,8 +21,4 @@ td {
   border-bottom: 1px solid #ddd;
   border-top: 1px solid #ddd;
   text-align: center;
-}
-
-tr:hover {
-  background-color: #d1d1d1;
 }
