@@ -1,44 +1,48 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Scripts
 
 In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Run the app localy at http://localhost:3000.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner. (tests use [Jest](https://jestjs.io/) and [testing-library](https://testing-library.com/))
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder. This folder can be hosted statically with a service like S3 or be served with something like node/express.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `yarn deploy`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Deploys the app to github-pages. Requires setting up a github repository for the app and adding the 'homepage' url to package.json.
+The homepage url follows the following pattern:
 
-### `yarn eject`
+`"homepage": "http://GITHUB_USERNAME.github.io/GITHUB_REPO_NAME"`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+GITHUB_USERNAME and GITHUB_REPO_NAME need to be replaced with the correct values
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Application structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Presentational components
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Presentational components are all in `./src/components`. `Layout.tsx` is the top level and is responsible for rendering all other presentational components.
 
-## Learn More
+#### State
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Most of the application state is found in `./src/App.tsx`, with small pieces of state showing up in some of the presentational components.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Logic
+
+Most of the applications logic can be found in `./src/util/filterUtilities`, but there is also some logic found in the presentational components
+
+#### Tests
+
+Tests are collocated in the same folder with the component or function they are testing
+
+#### Styling
+
+css files are also collocated in the same folder with the component or function they are styling
