@@ -20,7 +20,7 @@ export interface SelectProps {
 export interface FilterProps {
   filter: FilterState;
   setFilter: Function;
-  filterGroups: FilterGroupStructure
+  filterGroups: FilterGroupStructure;
 }
 
 export interface FilterGroupStructure {
@@ -40,10 +40,10 @@ export interface PaginationProps {
   restaurantCount: number | undefined;
 }
 
-export interface PaginationState {
-  offset: number;
-  limit: number;
-}
+// export interface PaginationState {
+//   offset: number;
+//   limit: number;
+// }
 
 export interface Restaurant {
   id: string;

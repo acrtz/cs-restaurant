@@ -2,17 +2,12 @@ import React, { useEffect, useState } from "react";
 import Layout from "./components/Layout/Layout";
 import api from "./api/api";
 import { filterRestaurants, prepareFilterGroups } from "./util/filterUtilities";
-import {
-  FilterState,
-  Restaurant,
-  PaginationState,
-  FilterGroupStructure,
-} from "./types";
+import { Restaurant, FilterGroupStructure } from "./types";
 
 const DEFAULT_FILTER = {
-  state: [],
-  genre: [],
-  attire: [],
+  state: [] as string[],
+  genre: [] as string[],
+  attire: [] as string[],
 };
 
 const DEFAULT_PAGINATION = {
@@ -21,17 +16,15 @@ const DEFAULT_PAGINATION = {
 };
 
 const App: React.FC = () => {
-  const [filter, setFilter] = useState<FilterState>(DEFAULT_FILTER);
-  const [pagination, setPagination] = useState<PaginationState>(
-    DEFAULT_PAGINATION
-  );
+  const [filter, setFilter] = useState(DEFAULT_FILTER);
+  const [pagination, setPagination] = useState(DEFAULT_PAGINATION);
   const [filterGroups, setFilterGroups] = useState<FilterGroupStructure>({
     state: [],
     genre: [],
     attire: [],
   });
-  const [textSearch, setTextSearch] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [textSearch, setTextSearch] = useState("");
+  const [error, setError] = useState("");
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(
     []
