@@ -24,11 +24,12 @@ const App: React.FC = () => {
     attire: [],
   });
   const [textSearch, setTextSearch] = useState("");
-  const [error, setError] = useState("");
   const [restaurants, setRestaurants] = useState<Restaurant[] | null>(null);
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>(
     []
   );
+
+  const setError = (errorMessage: string) => alert(errorMessage);
 
   useEffect(() => {
     if (restaurants === null) {
