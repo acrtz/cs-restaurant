@@ -10,7 +10,7 @@ import "./Layout.css";
 
 const Layout: React.FC<LayoutProps> = (props) => {
   const [open, setOpen] = useState<boolean>(false);
-
+  const noMatchesFound = !props.loading && !props.restaurants.length;
   return (
     <div
       id="layout"
@@ -36,20 +36,27 @@ const Layout: React.FC<LayoutProps> = (props) => {
           setFilter={props.setFilter}
         />
       </div>
+
       <div id="main-screen">
         <TextSearch
           textSearch={props.textSearch}
           setTextSearch={props.setTextSearch}
         />
-        <RestaurantTable
-          loading={props.loading}
-          restaurants={props.restaurants}
-        />
-        <Pagination
-          pagination={props.pagination}
-          setPagination={props.setPagination}
-          restaurantCount={props.restaurantCount}
-        />
+        {noMatchesFound ? (
+          <div id="no-matches">No matches found</div>
+        ) : (
+          <>
+            <RestaurantTable
+              loading={props.loading}
+              restaurants={props.restaurants}
+            />
+            <Pagination
+              pagination={props.pagination}
+              setPagination={props.setPagination}
+              restaurantCount={props.restaurantCount}
+            />
+          </>
+        )}
       </div>
     </div>
   );

@@ -17,6 +17,13 @@
   transition: all 0.5s;
 }
 
+#no-matches {
+  color: #818181;
+  font-size: 23px;
+  margin: 100px auto;
+  text-align: center;
+}
+
 #open-close-filter {
   outline: none;
   padding: none;
